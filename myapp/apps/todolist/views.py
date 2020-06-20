@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import MyToDoList
-from django.views import View # classの親クラス
-from .forms import * # 定義した全てのform導入
+from django.views import View 
+from .forms import * 
 from django.urls import reverse
 
 # Create your views here.
-def index(request):
-    todolist = MyToDoList.objects.filter(is_deleted=False) # 未削除の任務のみ表示
-    # todolist = MyToDoList.objects.all()
-    params = {'todolist':todolist}
-    return render(request, 'todolist/index.html', params)
+class Index(View):
+    def get(self, request):
+        todolist = MyToDoList.objects.filter(is_deleted=False).order_by("-id") # 未削除の任務のみ表示
+        params = {'todolist':todolist}
+        return render(request, 'todolist/index.html', params)
 
 class TodoAdd(View):
     def get(self, request):

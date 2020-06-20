@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock%}</title>
+    <title>{% block title %}{% endblock %}</title>
     {% include 'todolist/menu.html' %}
     <link rel="stylesheet" href="{% static 'todolist/style.css'%}">
     <link rel="stylesheet" href="{% static 'todolist/paginator.css'%}">
@@ -16,7 +16,7 @@
                 <h1><a href="{% url 'todolist:index' %}">ToDoList on Django </a></h1>
             </div>
         </header>
-        {% block contents %}{% endblock contents%}
+        {% block contents %}{% endblock%}
         <footer>
             <div class="test-right">
                 <p>Copyright © 2020, Wengeng Zhang. All rights reserved.</p>

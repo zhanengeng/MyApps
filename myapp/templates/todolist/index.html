@@ -1,0 +1,36 @@
+{% extends "todolist/base.html" %}
+{% block title %}ToDoList Top{% endblock %}
+{% block contents %}
+<article class="index">
+    <div class="page-name">
+        <h1>ToDOList</h1>
+    </div>
+    <div class="todolist">
+        <table>
+            <tr class="tb-header">
+                <th>Title</th>
+                <th>記入日</th>
+                <th>締切日</th>
+                <th>完了</th>
+                <th>削除ボタン</th>
+            </tr>
+            {% for tdl in todolist %}
+                <tr class="tdl">
+                    <td class="title"><a href="#">{{ tdl.title }}</a></td>
+                    <td class="create_time">{{ tdl.create_time }}</td>
+                    <td class="deadline">{{ tdl.deadline }}</td>
+                    <td class="done">
+                        {% if tdl.done == False %}
+                            <label>✖️</label>
+                        {% else %}
+                            <label>○</label>
+                        {% endif %}
+                    </td>
+                    <td class="btn-del"><a href="#">削除</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</article>
+
+{% endblock contents %}

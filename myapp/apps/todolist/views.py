@@ -1,14 +1,22 @@
 from django.shortcuts import render, redirect
-from django.views import View 
+from django.views import View
 from django.urls import reverse
+from django.core.paginator import Paginator
 from .models import MyToDoList
-from .forms import * 
+from .forms import *
 
 # Create your views here.
 class IndexView(View):
-    def get(self, request):
-        todolist = MyToDoList.objects.filter(is_deleted=False).order_by("-id") # 未論理削除のtodo内容のみ表示
-        params = {'todolist':todolist}
+    def get(self, request, page_id=1):
+        todolist = MyToDoList.objects.filter(is_deleted=False).order_by("-id")  # 未論理削除のtodo内容のみ表示
+        paginator = Paginator(todolist, 5)  # 全てのデータを5行づつページ分
+        current_page = paginator.get_page(page_id)  # page_idのページを取得(画面に表示,default=1)
+        nn_page_num = page_id + 2  # 2つあとのページ番号
+        params = {
+            "paginator":paginator,
+            'current_page':current_page,
+            "nn_page_num":nn_page_num,
+            }
         return render(request, 'todolist/index.html', params)
 
 class TodoAddView(View):

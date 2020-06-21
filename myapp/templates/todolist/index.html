@@ -14,7 +14,8 @@
                 <th>完了</th>
                 <th>削除ボタン</th>
             </tr>
-            {% for tdl in todolist %}
+            {# {% for tdl in todolist %} #}
+            {% for tdl in current_page %}
             <tr class="tdl">
                 <td class="title"><a href="{% url 'todolist:todoedit' tdl.id%}">{{ tdl.title }}</a></td>
                 <td class="create_time">{{ tdl.create_time|date:"n/j" }}</td>

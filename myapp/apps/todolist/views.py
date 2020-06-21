@@ -33,6 +33,7 @@ class TodoDeleteView(View):
         context = {
             "title":tdl_obj.title,
             "contents":tdl_obj.contents,
+            "create_time":tdl_obj.create_time,
             "deadline":tdl_obj.deadline,
             "done":tdl_obj.done,
         }

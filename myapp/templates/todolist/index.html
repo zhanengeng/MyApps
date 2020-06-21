@@ -17,8 +17,8 @@
             {% for tdl in todolist %}
                 <tr class="tdl">
                     <td class="title"><a href="#">{{ tdl.title }}</a></td>
-                    <td class="create_time">{{ tdl.create_time }}</td>
-                    <td class="deadline">{{ tdl.deadline }}</td>
+                    <td class="create_time">{{ tdl.create_time|date:"n/j" }}</td>
+                    <td class="deadline">{{ tdl.deadline|date:"n/j" }}</td>
                     <td class="done">
                         {% if tdl.done == False %}
                             <label>✖️</label>

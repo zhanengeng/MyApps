@@ -16,7 +16,7 @@
             </tr>
             {% for tdl in todolist %}
                 <tr class="tdl">
-                    <td class="title"><a href="#">{{ tdl.title }}</a></td>
+                    <td class="title"><a href="{% url 'todolist:todoedit' tdl.id%}">{{ tdl.title }}</a></td>
                     <td class="create_time">{{ tdl.create_time|date:"n/j" }}</td>
                     <td class="deadline">{{ tdl.deadline|date:"n/j" }}</td>
                     <td class="done">

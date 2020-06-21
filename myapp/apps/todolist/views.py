@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import MyToDoList
 from django.views import View 
-from .forms import * 
 from django.urls import reverse
+from .models import MyToDoList
+from .forms import * 
 
 # Create your views here.
 class IndexView(View):
@@ -49,5 +49,34 @@ class TodoDeleteView(View):
     def post(self, request, del_id):
         tdl_obj = MyToDoList.objects.get(id=del_id)
         tdl_obj.is_deleted = True
+        tdl_obj.save()
+        return redirect(reverse('todolist:index'))
+
+class TodoEditView(View):
+    def get(self, request, edit_id):
+        tdl_obj = MyToDoList.objects.get(id=edit_id)
+        context = {
+            "title":tdl_obj.title,
+            "contents":tdl_obj.contents,
+            "deadline":tdl_obj.deadline,
+            "done":tdl_obj.done,
+        }
+        form = ToDoEditForm(context)
+        params = {
+            "form":form,
+            "edit_id":edit_id,
+        }
+        return render(request, "todolist/todoEdit.html", params)
+
+    def post(self, request, edit_id):
+        tdl_obj = MyToDoList.objects.get(id=edit_id)
+        tdl_obj.title = request.POST.get("title")
+        tdl_obj.contents = request.POST.get("contents")
+        tdl_obj.deadline = request.POST.get("deadline")
+        if request.POST.get("done") == "on":
+        # if "done" in request.POST:
+            tdl_obj.done = True
+        else:
+            tdl_obj.done = False
         tdl_obj.save()
         return redirect(reverse('todolist:index'))

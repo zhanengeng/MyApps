@@ -1,0 +1,20 @@
+{% extends 'todolist/base.html' %}
+{% block title %}{% endblock %}
+{% block contents %}
+<article class="todoedit">
+    <div class="page-name">
+        <h1>ToDo編集フォーム</h1>
+    </div>
+    <div class="todoedit-form">
+        <form action="{% url 'todolist:todoedit' edit_id%}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="feild-row">
+                {{ field.label_tag }}{{ field }}
+            </div>
+            {% endfor %}
+            <input type="submit" value="保存">
+        </form>
+    </div>
+</article>
+{% endblock contents%}

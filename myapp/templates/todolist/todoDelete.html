@@ -1,0 +1,21 @@
+{% extends 'todolist/base.html' %}
+{% block title %}ToDoDelete{% endblock %}
+{% block contents %}
+<article class="tododel">
+    <div class="page-name">
+        <h1>ToDo削除フォーム</h1>
+    </div>
+    <div class="tododel-form">
+        <form action="{% url 'todolist:tododelete' del_id%}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field_row">
+                {{ field.label_tag }}{{ field }}
+            </div>
+            {% endfor %}
+            <p>本当に削除しますか？</p>
+            <input type="submit" value="削除">
+        </form>
+    </div>
+</article>
+{% endblock %}

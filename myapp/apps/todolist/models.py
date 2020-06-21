@@ -17,7 +17,5 @@ class MyToDoList(BaseModel):
         db_table = "todolist" 
 
         # adminでの表名前を設定：
-        verbose_name = "Zwg's ToDoList" 
+        verbose_name = "Zwg's ToDoLists" 
         verbose_name_plural = verbose_name
-
-    

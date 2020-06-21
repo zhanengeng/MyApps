@@ -26,7 +26,7 @@
                             <label>○</label>
                         {% endif %}
                     </td>
-                    <td class="btn-del"><a href="#">削除</a></td>
+                    <td class="btn-del"><a href="{% url 'todolist:tododelete' tdl.id%}">削除</a></td>
                 </tr>
             {% endfor %}
         </table>

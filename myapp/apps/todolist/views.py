@@ -5,13 +5,13 @@ from .forms import *
 from django.urls import reverse
 
 # Create your views here.
-class Index(View):
+class IndexView(View):
     def get(self, request):
         todolist = MyToDoList.objects.filter(is_deleted=False).order_by("-id") # 未論理削除のtodo内容のみ表示
         params = {'todolist':todolist}
         return render(request, 'todolist/index.html', params)
 
-class TodoAdd(View):
+class TodoAddView(View):
     def get(self, request):
         form = ToDoAddForm()
         params={
@@ -25,7 +25,7 @@ class TodoAdd(View):
         MyToDoList.objects.create(title=title, contents=contents, deadline=deadline)
         return redirect(reverse('todolist:index'))
 
-class TodoDelete(View):
+class TodoDeleteView(View):
     # 削除フォームの表示画面
     def get(self, request, del_id):
         # 記入したtodo内容を取り出し

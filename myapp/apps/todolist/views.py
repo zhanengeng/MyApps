@@ -9,7 +9,7 @@ from .forms import *
 # todo一覧
 class IndexView(View):
     def get(self, request, page_id=1, order_key="-id"):
-        print(order_key)
+        # print("========== order_key: " + order_key + "==========")
         todolist = MyToDoList.objects.filter(is_deleted=False).order_by(f"{order_key}")  # 未論理削除のtodo内容のみ表示
         paginator = Paginator(todolist, 5)  # 全てのデータを5行づつページ分
         current_page = paginator.get_page(page_id)  # page_idのページを取得(画面に表示,default=1)
@@ -18,6 +18,7 @@ class IndexView(View):
             "paginator":paginator,
             'current_page':current_page,
             "nn_page_num":nn_page_num,
+            "order_key":order_key,
             }
         return render(request, 'todolist/index.html', params)
 
@@ -95,20 +96,16 @@ class TodoEditView(View):
         tdl_obj.save()
         return redirect(reverse('todolist:index'))
 
-# 削除todo一覧
+# 論理削除一覧
 class DeletedTodoView(View):
     def get(self, request,page_id = 1):
         deleted_todo = MyToDoList.objects.filter(is_deleted=True).order_by("-id")  # 未論理削除のtodo内容のみ表示
-        paginator = Paginator(deleted_todo, 5)  # 全てのデータを5行づつページ分
-        current_page = paginator.get_page(page_id)  # page_idのページを取得(画面に表示,default=1)
-        nn_page_num = page_id + 2  # 2つあとのページ番号
         params = {
-            "paginator":paginator,
-            'current_page':current_page,
-            "nn_page_num":nn_page_num,
+            "deleted_todo":deleted_todo,
             }
         return render(request, 'todolist/deletedTodo.html', params)
 
+# 物理削除機能
 class DeleteForeverView(View):
     def get(self, request, del_id):
         if del_id == 0:
@@ -117,6 +114,7 @@ class DeleteForeverView(View):
             MyToDoList.objects.filter(id=del_id).delete()
         return redirect(reverse('todolist:deletedtodo'))
 
+# 論理削除の回復機能
 class TodoRestoreView(View):
     def get(self, request, res_id):
         tdl_obj = MyToDoList.objects.get(id=res_id)

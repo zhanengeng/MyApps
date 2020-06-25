@@ -4,15 +4,14 @@
 <article class="index">
     <div class="page-name">
         <h1>ToDOList</h1>
-        <h2>page_id={{current_page.number}}</h2>
     </div>
     <div class="todolist">
         <table>
             <tr class="tb-header">
                 <th>Title</th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='create_time' %}">記入日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='deadline' %}">締切日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='done' %}">完了</a></th>
+                <th><a href="{% url 'todolist:index' page_id=current_page.number order_key='-create_time' %}" {% if order_key == '-create_time' %}class="active"{% endif %}>記入日</a></th>
+                <th><a href="{% url 'todolist:index' page_id=current_page.number order_key='deadline' %}" {% if order_key == 'deadline' %}class="active"{% endif %}>締切日</a></th>
+                <th><a href="{% url 'todolist:index' page_id=current_page.number order_key='done' %}" {% if order_key == 'done' %}class="active"{% endif %}>完成</a></th>
                 {% comment %} <th>記入日</th>
                 <th>締切日</th>
                 <th>完了</th> {% endcomment %}
@@ -48,25 +47,25 @@
             {# 7ページ以上の場合#}
             {% if 7 <= paginator.num_pages %}
                 {% if current_page.has_previous %}
-                    <li><a href="{% url 'todolist:index' page_id=1 %}"><span>1</span></a></li>
+                    <li><a href="{% url 'todolist:index' page_id=1 order_key=order_key%}"><span>1</span></a></li>
                     {% if current_page.previous_page_number == 2 %}
-                        <li><a href="{% url 'todolist:index' page_id=2 %}"><span>2</span></a></li>
+                        <li><a href="{% url 'todolist:index' page_id=2 order_key=order_key%}"><span>2</span></a></li>
                     {% elif current_page.previous_page_number > 2 %}
                         <li class="three-points"><a href="#"><span>…</span></a></li>
-                        <li><a href="{% url 'todolist:index' %}{{ current_page.previous_page_number }}"><span>{{ current_page.previous_page_number }}</span></a>
+                        <li><a href="{% url 'todolist:index' page_id=current_page.previous_page_number order_key=order_key%}"><span>{{ current_page.previous_page_number }}</span></a>
                     </li>
                     {% endif %}
                 {% endif %}
 
-                <li><a href="{% url 'todolist:index' %}{{ current_page.number }}" class="current-page"><span>{{ current_page.number }}</span></a></li>
+                <li><a href="{% url 'todolist:index' page_id=current_page.number order_key=order_key%}" class="current-page"><span>{{ current_page.number }}</span></a></li>
 
                 {% if current_page.has_next %}
-                    <li><a href="{% url 'todolist:index' %}{{ current_page.next_page_number }}"><span>{{ current_page.next_page_number }}</span></a></li>
+                    <li><a href="{% url 'todolist:index' page_id=current_page.next_page_number order_key=order_key%}"><span>{{ current_page.next_page_number }}</span></a></li>
                     {% if paginator.num_pages == nn_page_num %}
-                        <li><a href="{% url 'todolist:index' page_id=nn_page_num %}"><span>{{ nn_page_num }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' page_id=nn_page_num order_key=order_key%}"><span>{{ nn_page_num }}</span></a></li>
                     {% elif paginator.num_pages > nn_page_num %}
                         <li class="three-points"><a href="#"><span>…</span></a></li>
-                        <li><a href="{% url 'todolist:index' %}{{ paginator.num_pages }}"><span>{{ paginator.num_pages }}</span></a>
+                        <li><a href="{% url 'todolist:index' page_id=paginator.num_pages order_key=order_key%}"><span>{{ paginator.num_pages }}</span></a>
                     </li>
                 {% endif %}
             {% endif %}
@@ -75,15 +74,15 @@
             {% else %}
                 {% for i in paginator.page_range %}
                     {% if i == current_page.number %}
-                        <li><a href="{% url 'todolist:index' page_id=i %}" class="current-page"><span>{{ i }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' page_id=i order_key=order_key%}" class="current-page"><span>{{ i }}</span></a></li>
                     {% else %}
-                        <li><a href="{% url 'todolist:index' page_id=i %}"><span>{{ i }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' page_id=i order_key=order_key%}"><span>{{ i }}</span></a></li>
                     {% endif %}
                 {% endfor %}
             {% endif %}
 
             {% if current_page.has_next %}
-                <li class="next"><a href="{% url 'todolist:index' %}{{ current_page.next_page_number }}"><span>»</span></a></li>
+                <li class="next"><a href="{% url 'todolist:index' page_id=current_page.next_page_number order_key=order_key%}"><span>»</span></a></li>
             {% endif %}
         </ul>
     </div>

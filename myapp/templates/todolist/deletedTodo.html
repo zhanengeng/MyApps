@@ -16,7 +16,7 @@
                 <th>復元</th>
                 <th>削除ボタン</th>
             </tr>
-            {% for tdl in current_page %}
+            {% for tdl in deleted_todo %}
             <tr class="tdl">
                 <td class="title"><a href="{% url 'todolist:todoedit' tdl.id%}">{{ tdl.title }}</a></td>
                 <td class="create_time">{{ tdl.create_time|date:"n/j" }}</td>
@@ -34,56 +34,5 @@
             {% endfor %}
         </table>
     </div>
-    
-    {# ページネーション #}
-    <div class="pagination">
-        <ul>
-            {% if current_page.has_previous %}
-            <li class="prev"><a href="{% url 'todolist:index' %}{{ current_page.previous_page_number }}"><span>«</span></a>
-            </li>
-            {% endif %}
-
-            {# 7ページ以上の場合#}
-            {% if 7 <= paginator.num_pages %}
-                {% if current_page.has_previous %}
-                    <li><a href="{% url 'todolist:index' 1 %}"><span>1</span></a></li>
-                    {% if current_page.previous_page_number == 2 %}
-                        <li><a href="{% url 'todolist:index' 2 %}"><span>2</span></a></li>
-                    {% elif current_page.previous_page_number > 2 %}
-                        <li class="three-points"><a href="#"><span>…</span></a></li>
-                        <li><a href="{% url 'todolist:index' %}{{ current_page.previous_page_number }}"><span>{{ current_page.previous_page_number }}</span></a>
-                    </li>
-                    {% endif %}
-                {% endif %}
-
-                <li><a href="{% url 'todolist:index' %}{{ current_page.number }}" class="current-page"><span>{{ current_page.number }}</span></a></li>
-
-                {% if current_page.has_next %}
-                    <li><a href="{% url 'todolist:index' %}{{ current_page.next_page_number }}"><span>{{ current_page.next_page_number }}</span></a></li>
-                    {% if paginator.num_pages == nn_page_num %}
-                        <li><a href="{% url 'todolist:index' nn_page_num %}"><span>{{ nn_page_num }}</span></a></li>
-                    {% elif paginator.num_pages > nn_page_num %}
-                        <li class="three-points"><a href="#"><span>…</span></a></li>
-                        <li><a href="{% url 'todolist:index' %}{{ paginator.num_pages }}"><span>{{ paginator.num_pages }}</span></a>
-                    </li>
-                {% endif %}
-            {% endif %}
-
-            {# 7ページ未満場合#}
-            {% else %}
-                {% for i in paginator.page_range %}
-                    {% if i == current_page.number %}
-                        <li><a href="{% url 'todolist:index' i %}" class="current-page"><span>{{ i }}</span></a></li>
-                    {% else %}
-                        <li><a href="{% url 'todolist:index' i %}"><span>{{ i }}</span></a></li>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {% if current_page.has_next %}
-                <li class="next"><a href="{% url 'todolist:index' %}{{ current_page.next_page_number }}"><span>»</span></a></li>
-            {% endif %}
-        </ul>
-    </div>
 </article>
-{% endblock contents %}
+{% endblock %}

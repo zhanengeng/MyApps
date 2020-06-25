@@ -1,197 +1,210 @@
 @charset "UTF-8";
 
 body {
-  margin: 0;
-  font-family: 'メイリオ', 'Hiragino Kaku Pro', sans-serif;
-  line-height: 1.5;
+    margin: 0;
+    font-family: 'メイリオ', 'Hiragino Kaku Pro', sans-serif;
+    line-height: 1.5;
 }
 h1 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* menu */
 .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 10%;
-  margin: 0;
-  padding: 40px 0;
-  background-color: #010101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 10%;
+    margin: 0;
+    padding: 40px 0;
+    background-color: #010101;
 }
 .menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
 }
 .menu ul li {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .menu ul li a {
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  color: #FFFFFF;
-  font-size: 24px;
-  font-weight: bold;
-  text-decoration: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
 }
 .menu ul li a:hover {
-  color: #010101;
-  background-color: #FFFFFF;
+    color: #010101;
+    background-color: #FFFFFF;
 }
 
 /* header & content & footer */
 .contents {
-  margin: 40px 2% 0 12%;
-  width: 86%;
-  display: flex;
-  flex-direction: column;
+    margin: 40px 2% 0 12%;
+    width: 86%;
+    display: flex;
+    flex-direction: column;
 }
 header, footer {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 header .app-name a {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  color: #010101;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #010101;
 }
 
 
 /* index */
 .index .todolist table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 .index .todolist .tb-header {
-  background-color: #EFEFEF;
+    background-color: #EFEFEF;
 }
+
+.index .todolist .tb-header a{
+    color:black;
+    text-decoration: none;
+}
+
+.index .todolist .tb-header .active{
+    /* background-color: #656565; */
+    text-decoration: underline;
+}
+
+
 .index .todolist table tr {
-  width: 100%;
-  border-bottom: solid 3px #EFEFEF;
-  text-align: center;
-  padding: 15px 10px;
+    width: 100%;
+    border-bottom: solid 3px #EFEFEF;
+    text-align: center;
+    padding: 15px 10px;
 }
 .index .todolist table td {
-  text-align: center;
-  padding: 15px 10px;
-  word-break: break-all;
+    text-align: center;
+    padding: 15px 10px;
+    word-break: break-all;
 }
 .index .todolist table .title {
-  /* width: 50%; */
+    /* width: 50%; */
 }
 .index .todolist table .create_time,
 .index .todolist table .deadline,
 .index .todolist table .done,
 .index .todolist table .btn {
-  width: 12.5%;
+    width: 12.5%;
 }
 .index .todolist table .tdl .title a {
-  text-decoration: none;
-  color: #010101;
-  font-weight: bold;
+    text-decoration: none;
+    color: #010101;
+    font-weight: bold;
 }
 .index .todolist table .tdl .title a:hover {
-  color: #696969;
+    color: #696969;
 }
 .index .todolist table .tdl .btn a {
-  padding: 3px;
-  border: solid 2px #969696;
-  border-radius: 4px;
-  color: #969696;
-  text-decoration: none;
+    padding: 3px;
+    border: solid 2px #969696;
+    border-radius: 4px;
+    color: #969696;
+    text-decoration: none;
 }
 .index .todolist table .tdl .btn a:hover {
-  color: #FFFFFF;
-  background-color: #969696;
+    color: #FFFFFF;
+    background-color: #969696;
 }
 
 /* todoAdd */
 .todoadd-form .field-row {
-  padding: 10px;
-  border-bottom: solid 2px #EFEFEF;
+    padding: 10px;
+    border-bottom: solid 2px #EFEFEF;
 }
 .todoadd-form .field-row label {
-  display: block;
-  float: left;
-  width: 170px;
-  height: 36px;
-  font-size: 1em;
+    display: block;
+    float: left;
+    width: 170px;
+    height: 36px;
+    font-size: 1em;
 }
 .todoadd-form .field-row input,
 .todoadd-form .field-row textarea {
-  border: solid 2px #ABABAB;
-  border-radius: 4px;
+    border: solid 2px #ABABAB;
+    border-radius: 4px;
 }
 
 /* todoEdit */
 .todoedit-form .field-row {
-  padding: 10px;
-  border-bottom: solid 2px #EFEFEF;
+    padding: 10px;
+    border-bottom: solid 2px #EFEFEF;
 }
 .todoedit-form .field-row label {
-  display: block;
-  float: left;
-  width: 170px;
-  height: 36px;
-  font-size: 1em;
+    display: block;
+    float: left;
+    width: 170px;
+    height: 36px;
+    font-size: 1em;
 }
 .todoedit-form .field-row input[type=text],
 .todoedit-form .field-row textarea,
 .todoedit-form .field-row input[type=checkbox] {
-  padding: 2px;
-  border: solid 2px #ABABAB;
-  border-radius: 4px;
+    padding: 2px;
+    border: solid 2px #ABABAB;
+    border-radius: 4px;
 }
 
 /* todoDelete */
 .tododel-form .field-row {
-  padding: 10px;
-  border-bottom: solid 2px #EFEFEF;
+    padding: 10px;
+    border-bottom: solid 2px #EFEFEF;
 }
 .tododel-form .field-row label {
-  display: block;
-  float: left;
-  width: 170px;
-  height: 36px;
-  font-size: 1em;
+    display: block;
+    float: left;
+    width: 170px;
+    height: 36px;
+    font-size: 1em;
 }
 .tododel-form .field-row input[type=text],
 .tododel-form .field-row textarea,
 .tododel-form .field-row input[type=checkbox] {
-  padding: 2px;
-  border: solid 2px #ABABAB;
-  border-radius: 4px;
-  pointer-events: none;
+    padding: 2px;
+    border: solid 2px #ABABAB;
+    border-radius: 4px;
+    pointer-events: none;
 }
 .tododel-form p {
-  color: crimson;
-  font-size: 12px;
+    color: crimson;
+    font-size: 12px;
 }
 
 
 /* deletedtodo */
 .alldel a{
-  padding: 5px;
-  border: solid 2px #969696;
-  border-radius: 4px;
-  text-decoration: none;
-  float: right;
-  margin: 10px;
-  color: white;
-  background-color: red;
+    padding: 5px;
+    border: solid 2px #969696;
+    border-radius: 4px;
+    text-decoration: none;
+    float: right;
+    margin: 10px;
+    color: white;
+    background-color: red;
 }
 
 .alldel a:hover{
-  cursor: pointer;
+    cursor: pointer;
 }
+

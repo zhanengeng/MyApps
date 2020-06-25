@@ -4,15 +4,14 @@
 <article class="index">
     <div class="page-name">
         <h1>ToDOList</h1>
-        <h2>page_id={{current_page.number}}</h2>
     </div>
     <div class="todolist">
         <table>
             <tr class="tb-header">
                 <th>Title</th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='create_time' %}">記入日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='deadline' %}">締切日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='done' %}">完了</a></th>
+                <th><a href="{% url 'todolist:index' %}">記入日</a></th>
+                <th><a href="{% url 'todolist:index' %}">締切日</a></th>
+                <th><a href="{% url 'todolist:index' %}">完了</a></th>
                 {% comment %} <th>記入日</th>
                 <th>締切日</th>
                 <th>完了</th> {% endcomment %}

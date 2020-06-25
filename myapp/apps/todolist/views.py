@@ -8,9 +8,8 @@ from .forms import *
 # Create your views here.
 # todo一覧
 class IndexView(View):
-    def get(self, request, page_id=1, order_key="-id"):
-        print(order_key)
-        todolist = MyToDoList.objects.filter(is_deleted=False).order_by(f"{order_key}")  # 未論理削除のtodo内容のみ表示
+    def get(self, request, page_id=1):
+        todolist = MyToDoList.objects.filter(is_deleted=False).order_by("-id")  # 未論理削除のtodo内容のみ表示
         paginator = Paginator(todolist, 5)  # 全てのデータを5行づつページ分
         current_page = paginator.get_page(page_id)  # page_idのページを取得(画面に表示,default=1)
         nn_page_num = int(page_id) + 2  # 2つあとのページ番号

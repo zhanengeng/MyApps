@@ -3,11 +3,8 @@ from .views import *
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),  
-    path("index/", IndexView.as_view(), name="index"),
-    path("index/<int:page_id>/", IndexView.as_view(), name="index"),  
-    path("index/<str:order_key>/", IndexView.as_view(), name="index"), 
-    path("index/<int:page_id>/<str:order_key>/", IndexView.as_view(), name="index"),
-    
+    path("<int:page_id>/", IndexView.as_view(), name="index"),  
+
     path("todoAdd/", TodoAddView.as_view(), name="todoadd"), 
     path("todoDelete/<int:del_id>/", TodoDeleteView.as_view(), name="tododelete"),
     path("todoEdit/<int:edit_id>/", TodoEditView.as_view(), name="todoedit"),

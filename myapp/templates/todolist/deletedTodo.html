@@ -1,24 +1,21 @@
 {% extends "todolist/base.html" %}
-{% block title %}ToDoList Top{% endblock %}
+{% block title %}DeletedToDo{% endblock %}
 {% block contents %}
 <article class="index">
     <div class="page-name">
-        <h1>ToDOList</h1>
-        <h2>page_id={{current_page.number}}</h2>
+        <h1>Deleted Todo</h1>
+        <div class="alldel"><a href="{% url 'todolist:deleteforever' 0 %}">全て削除</a></div>
     </div>
     <div class="todolist">
         <table>
             <tr class="tb-header">
                 <th>Title</th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='create_time' %}">記入日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='deadline' %}">締切日</a></th>
-                <th><a href="{% url 'todolist:index' page_id=2 order_key='done' %}">完了</a></th>
-                {% comment %} <th>記入日</th>
+                <th>記入日</th>
                 <th>締切日</th>
-                <th>完了</th> {% endcomment %}
+                <th>完了</th>
+                <th>復元</th>
                 <th>削除ボタン</th>
             </tr>
-            {# {% for tdl in todolist %} #}
             {% for tdl in current_page %}
             <tr class="tdl">
                 <td class="title"><a href="{% url 'todolist:todoedit' tdl.id%}">{{ tdl.title }}</a></td>
@@ -31,7 +28,8 @@
                     <label>○</label>
                     {% endif %}
                 </td>
-                <td class="btn"><a href="{% url 'todolist:tododelete' tdl.id%}">削除</a></td>
+                <td class="btn"><a href="{% url 'todolist:restore' tdl.id%}">復元</a></td>
+                <td class="btn"><a href="{% url 'todolist:deleteforever' tdl.id%}">永久削除</a></td>
             </tr>
             {% endfor %}
         </table>
@@ -48,9 +46,9 @@
             {# 7ページ以上の場合#}
             {% if 7 <= paginator.num_pages %}
                 {% if current_page.has_previous %}
-                    <li><a href="{% url 'todolist:index' page_id=1 %}"><span>1</span></a></li>
+                    <li><a href="{% url 'todolist:index' 1 %}"><span>1</span></a></li>
                     {% if current_page.previous_page_number == 2 %}
-                        <li><a href="{% url 'todolist:index' page_id=2 %}"><span>2</span></a></li>
+                        <li><a href="{% url 'todolist:index' 2 %}"><span>2</span></a></li>
                     {% elif current_page.previous_page_number > 2 %}
                         <li class="three-points"><a href="#"><span>…</span></a></li>
                         <li><a href="{% url 'todolist:index' %}{{ current_page.previous_page_number }}"><span>{{ current_page.previous_page_number }}</span></a>
@@ -63,7 +61,7 @@
                 {% if current_page.has_next %}
                     <li><a href="{% url 'todolist:index' %}{{ current_page.next_page_number }}"><span>{{ current_page.next_page_number }}</span></a></li>
                     {% if paginator.num_pages == nn_page_num %}
-                        <li><a href="{% url 'todolist:index' page_id=nn_page_num %}"><span>{{ nn_page_num }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' nn_page_num %}"><span>{{ nn_page_num }}</span></a></li>
                     {% elif paginator.num_pages > nn_page_num %}
                         <li class="three-points"><a href="#"><span>…</span></a></li>
                         <li><a href="{% url 'todolist:index' %}{{ paginator.num_pages }}"><span>{{ paginator.num_pages }}</span></a>
@@ -75,9 +73,9 @@
             {% else %}
                 {% for i in paginator.page_range %}
                     {% if i == current_page.number %}
-                        <li><a href="{% url 'todolist:index' page_id=i %}" class="current-page"><span>{{ i }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' i %}" class="current-page"><span>{{ i }}</span></a></li>
                     {% else %}
-                        <li><a href="{% url 'todolist:index' page_id=i %}"><span>{{ i }}</span></a></li>
+                        <li><a href="{% url 'todolist:index' i %}"><span>{{ i }}</span></a></li>
                     {% endif %}
                 {% endfor %}
             {% endif %}

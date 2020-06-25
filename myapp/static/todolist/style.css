@@ -88,12 +88,12 @@ header .app-name a {
   word-break: break-all;
 }
 .index .todolist table .title {
-  width: 50%;
+  /* width: 50%; */
 }
-.index .todolist table .entry-date,
+.index .todolist table .create_time,
 .index .todolist table .deadline,
 .index .todolist table .done,
-.index .todolist table .btn-del {
+.index .todolist table .btn {
   width: 12.5%;
 }
 .index .todolist table .tdl .title a {
@@ -104,14 +104,14 @@ header .app-name a {
 .index .todolist table .tdl .title a:hover {
   color: #696969;
 }
-.index .todolist table .tdl .btn-del a {
+.index .todolist table .tdl .btn a {
   padding: 3px;
   border: solid 2px #969696;
   border-radius: 4px;
   color: #969696;
   text-decoration: none;
 }
-.index .todolist table .tdl .btn-del a:hover {
+.index .todolist table .tdl .btn a:hover {
   color: #FFFFFF;
   background-color: #969696;
 }
@@ -177,4 +177,21 @@ header .app-name a {
 .tododel-form p {
   color: crimson;
   font-size: 12px;
+}
+
+
+/* deletedtodo */
+.alldel a{
+  padding: 5px;
+  border: solid 2px #969696;
+  border-radius: 4px;
+  text-decoration: none;
+  float: right;
+  margin: 10px;
+  color: white;
+  background-color: red;
+}
+
+.alldel a:hover{
+  cursor: pointer;
 }

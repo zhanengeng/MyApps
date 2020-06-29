@@ -17,3 +17,9 @@ pytz| 2020.1
 setuptools| 46.1.3
 sqlparse| 0.3.1
 wheel | 0.34.2
+
+## 現存機能
+1.todo事項のCRUD。
+2.ページネーション
+3.リストの並び替え。
+

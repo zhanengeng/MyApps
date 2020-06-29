@@ -23,3 +23,10 @@ wheel | 0.34.2
  2. ページネーション。
  3. リストの並び替え。
 
+## 起動方法
+ 1. requirements.txt通り環境を整え。
+ 2. /MyApps／myappフォルダーへcd(移動)して
+ 3. lsでmanage.pyの存在を確認する。
+ 4. ＄python manage.py runserver
+ 5. http://127.0.0.1:8000/todolist/ を開いてtodolistを確認。
+
